@@ -10,6 +10,7 @@ services:
       - DEBUG=${DEBUG-}
       - DOCKER_HOST=unix:///var/run/docker.sock
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
   
   terraform:
@@ -19,4 +20,5 @@ services:
     image: hashicorp/terraform:1.5.1
     volumes:
       - ./infrastructure:/infrastructure
+      - ./backend:/backend
     working_dir: /infrastructure
