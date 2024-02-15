@@ -12,6 +12,8 @@ locals {
   backend_role_name      = "backend_role"
   backend_api_name       = "backend_api"
   backend_api_stage_name = "backend_api_stage"
+  frontend_app_bucket_name = "frontend-app-bucket"
+  frontend_app_source_path = "/frontend/index.html"
 }
 
 module "backend_lambda" {
@@ -30,4 +32,10 @@ module "backend_api" {
   api_gw_name    = local.backend_api_name
   stage_name     = local.backend_api_stage_name
   handler_lambda = module.backend_lambda.function
+}
+
+module "frontend_app" {
+  source = "./common/s3"
+  bucket_name = local.frontend_app_bucket_name
+  source_path = local.frontend_app_source_path
 }
