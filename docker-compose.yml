@@ -21,4 +21,5 @@ services:
     volumes:
       - ./infrastructure:/infrastructure
       - ./backend:/backend
+      - ./frontend:/frontend
     working_dir: /infrastructure
